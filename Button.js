@@ -29,12 +29,8 @@ Button.prototype.clicked = function() {
 
          case 'subtract':
             vp.setOp('-'); break;
-
-
       }
-      
    }
-   
 };
 
 function Button(buttonNode) {

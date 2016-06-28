@@ -1,3 +1,4 @@
+'use strict'
 var doc = document;
 var vp;
 

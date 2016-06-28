@@ -46,18 +46,19 @@ Viewport.prototype.setOp = function(opChar) {
 
 Viewport.prototype.appendNum = function(num) {
 
-   if (this.op) {
-      this.varBLine.textContent = this.varBLine.textContent + num;
-      this.varB = parseInt(this.varBLine.textContent);
-   }
-   else if (this.result) {
-      this.varALine.textContent = this.result;
-      this.varA = this.result;
+   if (this.result) {
+      this.varALine.textContent = num;
+      this.varA = num;
       this.result = 0;
       this.varB = 0;
       this.varBLine.textContent = '';
+      this.resultLine.textContent = '';
       this.op = null;
       this.opLine.textContent = '';
+   }
+   else if (this.op) {
+      this.varBLine.textContent = this.varBLine.textContent + num;
+      this.varB = parseInt(this.varBLine.textContent);
    }
    else {
       this.varALine.textContent = this.varALine.textContent + num;
