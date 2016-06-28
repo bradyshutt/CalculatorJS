@@ -1,0 +1,95 @@
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: 'Bungee', cursive;
+}
+
+html {
+   height: 100%;
+   background: linear-gradient(#222, #555);
+}
+
+body {
+   height: 100%;
+
+}
+
+.wrapper {
+   height: 100%;
+}
+
+#calculator {
+   margin: 30px auto 0px auto;
+   width: 50%;
+   height: 80%;
+   padding-bottom: 40px;
+   background-color: darkorange;
+   border: 5px solid gray;
+   border-radius: 15px;
+}
+
+#viewport {
+   width: 90%;
+   margin: auto;
+   padding: 10px 5px;
+   min-height: 100px;
+}
+
+#viewport p {
+   background-color: #222;
+   padding: 4px 10px; 
+   text-align: right;
+   font-size: 30px;
+   color: limegreen;
+   min-height: 50px;
+
+}
+
+.buttons {
+   padding: 5px 5px;
+   background-color: darkorange;
+   height: inherit;
+   display: block;
+}
+
+
+.button {
+   float: left;
+   height: 20%;
+   vertical-align: middle;
+   padding: 5px;
+   text-align: center;
+   border: 3px solid darkorange;
+   white-space: nowrap;
+   background-color: #222;
+}
+
+.button:before {
+   content: '';
+   display: inline-block;
+   height: 100%;
+   vertical-align: middle;
+   margin-right: -0.05em; /* Adjusts for spacing */
+}
+
+.btn-1x1 {
+   width: 25%;
+   vertical-align: middle;
+}
+
+.btn-2x1 {
+   width: 50%;
+}
+
+.btn-txt {
+   color: #CCC;
+   text-align: center;
+   margin: 5px;
+   display: inline-block;
+   vertical-align: middle;
+   width: 95%;
+   font-size: 20px;
+}
+
+
