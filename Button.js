@@ -66,3 +66,22 @@ function Button(buttonNode) {
    return this;
 }
 
+//
+//function Number(pNode) {
+//
+//   this.hasDec = false;
+//   this.decVal = null;
+//   this.string = pNode.textContent.trim();
+//
+//   this.val = parseFloat(this.string);
+//
+//}
+//
+//Number.prototype.append = function(val) {
+//   this.string += val;
+//   pNode.textContent = this.string;
+//
+//
+//   
+//}
+//
