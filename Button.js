@@ -54,7 +54,7 @@ function Button(buttonNode) {
          case '+':         this.val = 'add';       break;
          case '-':         this.val = 'subtract';  break;
          case '.':         this.val = '.';       break;
-         case 'CLR':       this.val = 'clear';     break;
+         case 'CLEAR':       this.val = 'clear';     break;
          case 'ENTER':     this.val = 'enter';     break;
          default :   throw new Error('Unrecognized button text: ' + this.text);
       };
