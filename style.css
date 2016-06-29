@@ -44,8 +44,8 @@ a:hover {
 
 #calculator {
    margin: 0px auto 0px auto;
-   width: 90%;
-   max-width: 500px;
+   width: 30%;
+   min-width: 320px;
    height: 70%;
    background-color: darkorange;
    border: 5px solid gray;
