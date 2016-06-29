@@ -9,8 +9,7 @@ Button.prototype.clicked = function() {
 
    if (this.isNum)
       vp.appendNum(this.val);
-   else if (this.text === '.')
-      vp.appendDec();
+      //vp.textContent = vp.textContent + this.val;
    else {
       switch (this.val) {
          case 'clear':
@@ -38,6 +37,7 @@ Button.prototype.clicked = function() {
 };
 
 function Button(buttonNode) {
+
    this.node = buttonNode;
    this.text = buttonNode.textContent.trim();
    this.isOp = isNaN(this.text);
@@ -53,7 +53,7 @@ function Button(buttonNode) {
          case '/':         this.val = 'divide';    break;
          case '+':         this.val = 'add';       break;
          case '-':         this.val = 'subtract';  break;
-         case '.':         this.val = '.';       break;
+         case '.':         this.val = 'dot';       break;
          case 'CLR':       this.val = 'clear';     break;
          case 'ENTER':     this.val = 'enter';     break;
          default :   throw new Error('Unrecognized button text: ' + this.text);
@@ -63,44 +63,54 @@ function Button(buttonNode) {
       this.style.backgroundColor = '#aa0044'; 
       setTimeout(function() { self.node.style.backgroundColor = '#222'}, 100);
       self.clicked();
+
    });
+
    return this;
 }
 
 
 function Line(pNode) {
-   this.string = (pNode) ? pNode.textContent.trim() : null;
-   this.node = pNode;
+
    this.self = this;
+   this.hasDec = false;
+   this.decVal = null;
+   this.string = pNode.textContent.trim();
+   this.node = pNode;
+
+   this.val = parseFloat(this.string);
+
 }
 
 Line.prototype.append = function(val) {
    this.string += val;
-   this.node.textContent = this.string;
+   this.updateLine();
+   return this.self;
 }
 
-Line.prototype.update = function(str) {
-      this.node.textContent = str || this.string;
-      this.string = str;
+Line.prototype.updateLine = function() {
+   pNode.textContent = this.string;
+   return this.self;
 }
 
 Line.prototype.clear = function() {
-   this.node.textContent = '';
    this.string = '';
+   this.updateLine();
 }
 
-NumLine.prototype = new Line;
+Function.inherits = function(Parent) {
+   this.prototype = new Parent();
+   return this;
+ }
+
+var x = function() {
+   //something
+};
+
 function NumLine(pNode) {
-   this.string = pNode.textContent.trim();
-   this.node = pNode;
-   this.hasDec = false;
-}
+   //this.prototype = new Line(pNode);
+};
 
-NumLine.prototype.getValue =  function() {
-   return parseFloat(this.string);
-}
+x.inherits(x);
 
-NumLine.prototype.clear = function() {
-   Line.prototype.clear.apply(this);
-   this.hasDec = false;
-}
+

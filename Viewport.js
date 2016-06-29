@@ -1,93 +1,96 @@
 'use strict'
 
 function Viewport(vpDiv) {
+
    this.varALine = vpDiv.children[0]; 
    this.opLine = vpDiv.children[1]; 
    this.varBLine = vpDiv.children[2]; 
    this.resultLine = vpDiv.children[3]; 
 
-   this.varA = parseInt(this.varALine.textContent) || 0;
-   this.varB = parseInt(this.varBLine.textContent) || 0;
-   this.op = null;
-   this.result = 0;
+
+//this.varA = parseInt(this.varALine.textContent) || 0;
+
+   this.varA = new NumLine(vpDiv.children[0]);
+   this.op = new Line(vpDiv.children[1]);
+   this.varB = new NumLine(vpDiv.children[2]);
+   this.result = new Line(vpDiv.children[3]);
 
    return this;
 }
 
 
 Viewport.prototype.clear = function() {
-   this.varALine.textContent = '';
-   this.opLine.textContent = '';
+   this.varA.clear();
+   this.op.clear()
    this.varBLine.textContent = '';
    this.resultLine.textContent = '';
 
-   this.varA = 0;
-   this.varB = 0;
-   this.op = null;
-   this.result = 0;
+   this.varA.clear();
+   this.varB.clear();
+   this.op.clear();
+   this.result.clear();
 
 }
 
 
 Viewport.prototype.setOp = function(opChar) {
 
-   if (this.result) {
-      this.varALine.textContent = this.result;
-      this.varA = this.result;
-      this.result = 0;
-      this.resultLine.textContent = '';
-      this.varB = 0;
-      this.varBLine.textContent = '';
+   if (this.result.string) {
+      this.varA.update(this.result.string);
+      this.result.clear();
+      this.varB.clear();
    }
-   this.op = opChar;
-   this.opLine.textContent = opChar;
+   this.op.update(opChar);
 }
 
 
 Viewport.prototype.appendNum = function(num) {
-
-   if (this.result) {
-      this.varALine.textContent = num;
-      this.varA = num;
-      this.result = 0;
-      this.varB = 0;
-      this.varBLine.textContent = '';
-      this.resultLine.textContent = '';
-      this.op = null;
-      this.opLine.textContent = '';
-   }
-   else if (this.op) {
-      this.varBLine.textContent = this.varBLine.textContent + num;
-      this.varB = parseInt(this.varBLine.textContent);
-   }
-   else {
-      this.varALine.textContent = this.varALine.textContent + num;
-      this.varA = parseInt(this.varALine.textContent);
-   }
-
+   if (this.result.string) {
+      this.varA.update(num);
+      this.result.clear();
+      this.varB.clear();
+      this.op.clear(); }
+   else if (this.op.string)
+      this.varB.append(num);
+   else
+      this.varA.append(num);
 };
+
+Viewport.prototype.appendDec = function() {
+   if (this.result.string)
+      return; 
+   else if (this.op.string && !this.varB.hasDec) {
+      this.varB.append('.');
+      this.varB.hasDec = true;
+   }
+   else if (!this.op.string && !this.varA.hasDec) {
+      this.varA.append('.');
+      this.varA.hadDec = true;
+   }
+}
 
 Viewport.prototype.enter = function() {
 
    var res;
 
-   switch(this.op) {
+   switch(this.op.string) {
 
       case '*':
-         res = this.varA * this.varB; break;
+         res = this.varA.getValue() * this.varB.getValue(); break;
 
       case '/':
-         res = this.varA / this.varB; break;
+         res = this.varA.getValue() / this.varB.getValue(); break;
 
       case '+':
-         res = this.varA + this.varB; break;
+         res = this.varA.getValue() + this.varB.getValue(); break;
 
       case '-':
-         res = this.varA - this.varB; break;
+         res = this.varA.getValue() - this.varB.getValue(); break;
 
    };
 
-   this.resultLine.textContent = res;
-   this.result = res;
+   res = Math.round(res * 10000) / 10000;
+
+   this.result.update(res);
 
 }

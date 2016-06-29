@@ -61,7 +61,10 @@ a, a:visited {
    font-size: 30px;
    color: limegreen;
    min-height: 50px;
+}
 
+#val2 {
+   border-bottom: 1px solid white;
 }
 
 .buttons {
