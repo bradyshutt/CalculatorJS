@@ -23,7 +23,6 @@ a, a:visited {
 
 a:hover {
    text-shadow: 0px 0px 5px yellow;
-
 }
 
 .wrapper {
@@ -45,7 +44,8 @@ a:hover {
 
 #calculator {
    margin: 0px auto 0px auto;
-   width: 40%;
+   width: 90%;
+   max-width: 500px;
    height: 70%;
    background-color: darkorange;
    border: 5px solid gray;
@@ -78,7 +78,6 @@ a:hover {
    height: inherit;
    display: block;
 }
-
 
 .button {
    float: left;
