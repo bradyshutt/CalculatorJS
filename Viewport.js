@@ -20,15 +20,30 @@ function Viewport(vpDiv) {
 
 
 Viewport.prototype.clear = function() {
-   this.varA.clear();
-   this.op.clear()
-   this.varBLine.textContent = '';
-   this.resultLine.textContent = '';
+   if (this.result.string) {
+      this.varA.clear();
+      this.op.clear()
+      this.varBLine.textContent = '';
+      this.resultLine.textContent = '';
 
-   this.varA.clear();
-   this.varB.clear();
-   this.op.clear();
-   this.result.clear();
+      this.varA.clear();
+      this.varB.clear();
+      this.op.clear();
+      this.result.clear(); }
+
+   else if (this.varB.string) {
+      this.varB.clear();
+      return; } 
+
+   else if (this.op.string) {
+      this.op.clear(); 
+      return; }
+
+   else if (this.varA.string) {
+      this.varA.clear();
+      return; }
+
+
 
 }
 
